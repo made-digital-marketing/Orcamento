@@ -403,6 +403,7 @@
         </div>
     </div>
     <script>
+        let investimentoTrafego = 0;
         const ARTES_PRECOS = [
             { quantidade: 4, valor: 360 },
             { quantidade: 8, valor: 680 },
@@ -425,6 +426,24 @@
             wrap.innerHTML = '';
             SERVICOS.forEach((s, idx) => {
                 const isChecked = servicosSelecionados.includes(idx);
+                let extraInput = '';
+                // Só para Tráfego Pago (idx 1)
+                if (idx === 1 && isChecked) {
+                    extraInput = `
+                <div style="margin-top:10px;">
+                    <label style="font-size:0.98rem; color:#fff;">
+                        Investimento em Tráfego:<br>
+                        <input 
+                            type="number" 
+                            min="0" 
+                            id="input-investimento" 
+                            value="${investimentoTrafego !== null ? investimentoTrafego : ''}" 
+                            placeholder="Ex: 1500" 
+                            style="margin-top:4px;padding:7px 9px;font-size:1.03rem;border-radius:7px;border:none;outline:none;width:120px;">
+                    </label>
+                </div>
+            `;
+                }
                 const div = document.createElement('div');
                 div.className = 'card' + (isChecked ? ' selected' : '');
                 div.onclick = e => {
@@ -432,16 +451,28 @@
                     toggleServico(idx);
                 };
                 div.innerHTML = `
-        <label>
-          <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleServico(${idx})">
-          <span style="font-size:1.08rem;font-weight:600;">${s.nome}</span>
-        </label>
-        <div class="valor">R$${s.valor}/mês</div>
-        <div style="margin-top:6px;font-size:0.97rem;">${s.descricao}</div>
-      `;
+                    <label>
+                    <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleServico(${idx})">
+                    <span style="font-size:1.08rem;font-weight:600;">${s.nome}</span>
+                    </label>
+                    <div class="valor">R$${s.valor}/mês</div>
+                    <div style="margin-top:6px;font-size:0.97rem;">${s.descricao}</div>
+                    ${extraInput}
+                `;
                 wrap.appendChild(div);
             });
+
+            // Ative o listener do input de investimento, se existir
+            const investimentoInput = document.getElementById('input-investimento');
+            if (investimentoInput) {
+                investimentoInput.addEventListener('input', function () {
+                    let val = parseFloat(this.value.replace(',', '.'));
+                    investimentoTrafego = (!isNaN(val) && val > 0) ? val : 0;
+                    renderTotal();
+                });
+            }
         }
+
 
         function renderArtes() {
             const wrap = document.getElementById('artes');
@@ -471,7 +502,8 @@
             setTimeout(() => {
                 const tServ = servicosSelecionados.reduce((acc, i) => acc + SERVICOS[i].valor, 0);
                 const tArt = (arteSelecionada !== null) ? ARTES_PRECOS[arteSelecionada].valor : 0;
-                document.getElementById('total').textContent = 'R$' + (tServ + tArt) + ',00 / mês';
+                const tInvest = servicosSelecionados.includes(1) ? investimentoTrafego : 0; // idx 1 = Tráfego Pago
+                document.getElementById('total').textContent = 'R$' + (tServ + tArt + tInvest) + ',00 / mês';
             }, 400);
         }
 
@@ -502,12 +534,17 @@
         function gerarResumo() {
             const tServ = servicosSelecionados.reduce((acc, i) => acc + SERVICOS[i].valor, 0);
             const tArt = (arteSelecionada !== null) ? ARTES_PRECOS[arteSelecionada].valor : 0;
-            const total = tServ + tArt;
+            const tInvest = servicosSelecionados.includes(1) ? investimentoTrafego : 0;
+            const total = tServ + tArt + tInvest;
             let txt = '';
             if (servicosSelecionados.length) {
                 txt += '<strong>Serviços Selecionados:</strong><ul>';
                 servicosSelecionados.forEach(i => {
-                    txt += `<li>${SERVICOS[i].nome} <span style="color:#34d399;font-weight:600;">(R$${SERVICOS[i].valor}/mês)</span></li>`;
+                    txt += `<li>${SERVICOS[i].nome} <span style="color:#34d399;font-weight:600;">(R$${SERVICOS[i].valor}/mês)</span>`;
+                    if (i === 1 && investimentoTrafego && investimentoTrafego > 0) {
+                        txt += `<br><span style="color:#fbbf24;font-size:0.97em;">Investimento em Tráfego: <b>R$${investimentoTrafego}</b></span>`;
+                    }
+                    txt += '</li>';
                 });
                 txt += '</ul>';
             }
@@ -523,9 +560,17 @@
         function gerarMensagemWpp() {
             const tServ = servicosSelecionados.reduce((acc, i) => acc + SERVICOS[i].valor, 0);
             const tArt = (arteSelecionada !== null) ? ARTES_PRECOS[arteSelecionada].valor : 0;
-            const total = tServ + tArt;
+            const tInvest = servicosSelecionados.includes(1) ? investimentoTrafego : 0;
+            const total = tServ + tArt + tInvest;
             let s1 = servicosSelecionados.length
-                ? 'Serviços selecionados:\n' + servicosSelecionados.map(i => `• ${SERVICOS[i].nome} (R$${SERVICOS[i].valor}/mês)`).join('\n') : '';
+                ? 'Serviços selecionados:\n' + servicosSelecionados.map(i => {
+                    let linha = `• ${SERVICOS[i].nome} (R$${SERVICOS[i].valor}/mês)`;
+                    if (i === 1 && investimentoTrafego && investimentoTrafego > 0) {
+                        linha += `\n   Investimento em Tráfego: R$${investimentoTrafego}`;
+                    }
+                    return linha;
+                }).join('\n')
+                : '';
             let s2 = arteSelecionada !== null
                 ? '\nPacote de artes:\n' + `• ${ARTES_PRECOS[arteSelecionada].quantidade} artes (R$${ARTES_PRECOS[arteSelecionada].valor})` : '';
             return encodeURIComponent(
