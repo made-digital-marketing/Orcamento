@@ -30,6 +30,30 @@
     .small { color:#94a3b8; font-size: 13px; margin-top: 24px;}
     @media (max-width:680px){ .cards, .artes-cards {flex-direction: column;} .container{padding:12px 2vw;} }
     @media (max-width: 600px) {
+      .cards, .artes-cards {
+        gap: 10px;
+      }
+      .card, .artes-card {
+        flex: 1 1 100%;
+        padding: 12px 10px;
+        min-width: 0;
+        font-size: 0.97rem;
+        border-radius: 12px;
+      }
+      .card label, .artes-card label {
+        font-size: 1rem;
+      }
+      .valor {
+        font-size: 1rem;
+      }
+      .card .valor, .artes-card .valor {
+        margin-top: 6px;
+        margin-bottom: 2px;
+      }
+      .card input[type=checkbox], .artes-card input[type=checkbox] {
+        width: 16px;
+        height: 16px;
+      }
       .container.resumo {
         padding: 10vw 4vw;
         margin: 12vw 0 0 0;
