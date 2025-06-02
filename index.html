@@ -130,9 +130,13 @@
     });
   }
   function renderTotal() {
-    const tServ = servicosSelecionados.reduce((acc,i)=>acc+SERVICOS[i].valor,0);
-    const tArt = artesSelecionados.reduce((acc,i)=>acc+ARTES_PRECOS[i].valor,0);
-    document.getElementById('total').textContent = 'R$'+(tServ+tArt)+',00 / mês';
+    // Simula uma chamada AJAX para buscar o total (exemplo: setTimeout)
+    document.getElementById('total').textContent = 'Calculando...';
+    setTimeout(() => {
+      const tServ = servicosSelecionados.reduce((acc,i)=>acc+SERVICOS[i].valor,0);
+      const tArt = artesSelecionadas.reduce((acc,i)=>acc+ARTES_PRECOS[i].valor,0);
+      document.getElementById('total').textContent = 'R$'+(tServ+tArt)+',00 / mês';
+    }, 400); // atraso de 400ms para simular requisição AJAX
   }
   function toggleServico(idx) {
     if (servicosSelecionados.includes(idx)) {
