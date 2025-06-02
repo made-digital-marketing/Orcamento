@@ -2,310 +2,436 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Plano Personalizado Maloca</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background: #0f172a;
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plano Personalizado Maloca</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ... (SEU CSS SEM ALTERAÇÃO) ... */
+        body {
+            background: #0f172a;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            color: #fff;
+        }
 
-    .container {
-      max-width: 720px;
-      margin: 32px auto;
-      background: #1e293b;
-      border-radius: 24px;
-      box-shadow: 0 2px 24px #0002;
-      padding: 32px 18px;
-    }
+        .container {
+            max-width: 720px;
+            margin: 32px auto;
+            background: #1e293b;
+            border-radius: 24px;
+            box-shadow: 0 2px 24px #0002;
+            padding: 32px 18px;
+        }
 
-    h1 {
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 12px;
-    }
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 12px;
+        }
 
-    h2 {
-      font-size: 1.5rem;
-      margin: 18px 0 10px;
-    }
+        h2 {
+            font-size: 1.5rem;
+            margin: 18px 0 10px;
+        }
 
-    h3 {
-      font-size: 1.15rem;
-      color: #34d399;
-      margin: 26px 0 10px;
-    }
+        h3 {
+            font-size: 1.15rem;
+            color: #34d399;
+            margin: 26px 0 10px;
+        }
 
-    .cards,
-    .artes-cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
+        .cards,
+        .artes-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
 
-    .card,
-    .artes-card {
-      flex: 1 1 240px;
-      background: #f0fdfa;
-      color: #047857;
-      border: 2px solid #99f6e4;
-      border-radius: 16px;
-      padding: 18px 16px;
-      transition: .2s;
-      cursor: pointer;
-    }
+        .card,
+        .artes-card {
+            flex: 1 1 240px;
+            background: #f0fdfa;
+            color: #047857;
+            border: 2px solid #99f6e4;
+            border-radius: 16px;
+            padding: 18px 16px;
+            transition: .2s;
+            cursor: pointer;
+        }
 
-    .card.selected,
-    .artes-card.selected {
-      background: #047857;
-      color: #fff;
-      border-color: #34d399;
-      box-shadow: 0 4px 32px #10b98155;
-    }
+        .card.selected,
+        .artes-card.selected {
+            background: #047857;
+            color: #fff;
+            border-color: #34d399;
+            box-shadow: 0 4px 32px #10b98155;
+        }
 
-    .card label,
-    .artes-card label {
-      cursor: pointer;
-    }
+        .card label,
+        .artes-card label {
+            cursor: pointer;
+        }
 
-    .card input[type=checkbox],
-    .artes-card input[type=checkbox] {
-      accent-color: #34d399;
-      width: 18px;
-      height: 18px;
-      margin-right: 7px;
-    }
+        .card input[type=checkbox],
+        .artes-card input[type=checkbox] {
+            accent-color: #34d399;
+            width: 18px;
+            height: 18px;
+            margin-right: 7px;
+        }
 
-    .artes-label {
-      font-weight: bold;
-    }
+        .artes-label {
+            font-weight: bold;
+        }
 
-    .valor {
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
+        .valor {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
 
-    .btn-pedido,
-    .btn-wpp,
-    .btn-voltar {
-      margin-top: 20px;
-      font-size: 1rem;
-      border: none;
-      outline: none;
-      border-radius: 12px;
-      padding: 12px 30px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: .2s;
-    }
+        .btn-pedido,
+        .btn-wpp,
+        .btn-voltar {
+            margin-top: 20px;
+            font-size: 1rem;
+            border: none;
+            outline: none;
+            border-radius: 12px;
+            padding: 12px 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
 
-    .btn-pedido {
-      background: linear-gradient(90deg, #34d399, #06b6d4);
-      color: #fff;
-    }
+        .btn-pedido {
+            background: linear-gradient(90deg, #34d399, #06b6d4);
+            color: #fff;
+        }
 
-    .btn-pedido:hover {
-      background: linear-gradient(90deg, #10b981, #0ea5e9);
-    }
+        .btn-pedido:hover {
+            background: linear-gradient(90deg, #10b981, #0ea5e9);
+        }
 
-    .btn-wpp {
-      background: #25d366;
-      color: #222;
-      margin-top: 0;
-    }
+        .btn-wpp {
+            background: #25d366;
+            color: #222;
+            margin-top: 0;
+        }
 
-    .btn-wpp:hover {
-      background: #128c7e;
-      color: #fff;
-    }
+        .btn-wpp:hover {
+            background: #128c7e;
+            color: #fff;
+        }
 
-    .btn-voltar {
-      background: #fff;
-      color: #047857;
-      border: 2px solid #34d399;
-      margin-right: 18px;
-    }
+        .btn-voltar {
+            background: #fff;
+            color: #047857;
+            border: 2px solid #34d399;
+            margin-right: 18px;
+        }
 
-    .btn-voltar:hover {
-      background: #34d399;
-      color: #fff;
-    }
+        .btn-voltar:hover {
+            background: #34d399;
+            color: #fff;
+        }
 
-    .resumo {
-      background: #022c22cc;
-      padding: 32px 22px;
-      border-radius: 20px;
-      box-shadow: 0 8px 28px #10b98122;
-    }
+        .resumo {
+            background: #022c22cc;
+            padding: 32px 22px;
+            border-radius: 20px;
+            box-shadow: 0 8px 28px #10b98122;
+        }
 
-    ul {
-      margin: 0 0 8px 0;
-      padding: 0 0 0 18px;
-    }
+        ul {
+            margin: 0 0 8px 0;
+            padding: 0 0 0 18px;
+        }
 
-    .small {
-      color: #94a3b8;
-      font-size: 13px;
-      margin-top: 24px;
-    }
+        .small {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: 24px;
+        }
 
-    @media (max-width:680px) {
+        @media (max-width:680px) {
 
-      .cards,
-      .artes-cards {
-        flex-direction: column;
-      }
+            .cards,
+            .artes-cards {
+                flex-direction: column;
+            }
 
-      .container {
-        padding: 12px 2vw;
-      }
-    }
+            .container {
+                padding: 12px 2vw;
+            }
+        }
 
-    @media (max-width: 600px) {
-      .container {
-        margin: 0px;
-        border-radius: 0px;
-      }
+        @media (max-width: 600px) {
+            .container {
+                margin: 0px;
+                border-radius: 0px;
+            }
 
-      .cards,
-      .artes-cards {
-        gap: 10px;
-      }
+            .cards,
+            .artes-cards {
+                gap: 10px;
+            }
 
-      .card,
-      .artes-card {
-        flex: 1 1 100%;
-        padding: 12px 10px;
-        min-width: 0;
-        font-size: 0.97rem;
-        border-radius: 12px;
-      }
+            .card,
+            .artes-card {
+                flex: 1 1 100%;
+                padding: 12px 10px;
+                min-width: 0;
+                font-size: 0.97rem;
+                border-radius: 12px;
+            }
 
-      .card label,
-      .artes-card label {
-        font-size: 1rem;
-      }
+            .card label,
+            .artes-card label {
+                font-size: 1rem;
+            }
 
-      .valor {
-        font-size: 1rem;
-      }
+            .valor {
+                font-size: 1rem;
+            }
 
-      .card .valor,
-      .artes-card .valor {
-        margin-top: 6px;
-        margin-bottom: 2px;
-      }
+            .card .valor,
+            .artes-card .valor {
+                margin-top: 6px;
+                margin-bottom: 2px;
+            }
 
-      .card input[type=checkbox],
-      .artes-card input[type=checkbox] {
-        width: 16px;
-        height: 16px;
-      }
+            .card input[type=checkbox],
+            .artes-card input[type=checkbox] {
+                width: 16px;
+                height: 16px;
+            }
 
-      #resumo-section {
-        height: 100vh;
-        margin: 0px;
-      }
-      .container.resumo {
-        padding: 10vw 4vw;
-        margin: 0px;
-        min-width: 0;
-        height: 100vh;
-        border-radius: 14px;
-      }
-      .container.resumo h2 {
-        font-size: 1.1rem;
-        margin-bottom: 16px;
-      }
-      #resumo-list strong { font-size: 1.02rem; }
-      #resumo-list ul { margin-left: 12px; font-size: 0.99rem;}
-      .btn-voltar, .btn-wpp {
-        display: block;
-        width: 100%;
-        min-width: 0;
-        margin: 0 0 16px 0;
-        font-size: 1.05rem;
-        padding: 14px 0;
-      }
-      .btn-voltar { margin-bottom: 10px; }
-    }
-  </style>
+            #resumo-section {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                min-height: 100vh;
+                background: linear-gradient(160deg, #083344 60%, #022c22 100%);
+                padding: 0;
+            }
+
+            .container.resumo {
+                width: 98vw;
+                max-width: 420px;
+                background: rgba(15, 23, 42, 0.95);
+                border-radius: 20px;
+                padding: 7vw 4vw 4vw 4vw;
+                box-shadow: 0 4px 32px #10b98144;
+                margin: 4vw 0 0 0;
+                min-width: 0;
+                height: auto;
+                overflow: visible;
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .container.resumo h2 {
+                font-size: 1.13rem;
+                font-weight: 700;
+                color: #fff;
+                margin-bottom: 16px;
+                letter-spacing: 0.02em;
+            }
+
+            #resumo-list {
+                font-size: 1.01rem;
+                color: #d1fae5;
+                margin-bottom: 14px;
+                border-bottom: 1px solid #1ea88b30;
+                padding-bottom: 12px;
+            }
+
+            #resumo-list strong {
+                color: #6ee7b7;
+                font-weight: 700;
+                font-size: 1.04rem;
+                margin-top: 7px;
+                display: block;
+            }
+
+            #resumo-list ul {
+                margin: 7px 0 4px 16px;
+                font-size: 1rem;
+            }
+
+            #resumo-list li {
+                margin-bottom: 4px;
+                font-size: 0.99rem;
+                color: #a7f3d0;
+            }
+
+            #resumo-list div {
+                margin: 10px 0 0 0;
+                font-size: 1.16rem;
+                color: #34d399;
+                font-weight: bold;
+                letter-spacing: 0.01em;
+            }
+
+            #resumo-list .resumo-total-label {
+                color: #99f6e4;
+                font-size: 1.05rem;
+                font-weight: 600;
+                margin-top: 8px;
+                margin-bottom: 0;
+                letter-spacing: 0.01em;
+            }
+
+            #resumo-list .resumo-total-valor {
+                color: #34d399;
+                font-size: 2.05rem;
+                font-weight: 800;
+                letter-spacing: 0.01em;
+                margin-top: 0;
+                margin-bottom: 10px;
+                display: block;
+                line-height: 1.05em;
+            }
+
+            #resumo-list hr {
+                border: none;
+                border-top: 1.5px solid #183c3c38;
+                margin: 18px 0 14px 0;
+            }
+
+            .btn-voltar {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+                font-size: 1.08rem;
+                font-weight: 600;
+                padding: 14px 0;
+                background: #fff;
+                color: #047857;
+                border: 2px solid #34d399;
+                border-radius: 12px;
+                margin: 0 0 13px 0;
+                box-shadow: 0 1px 8px #10b98133;
+                transition: all .22s;
+            }
+
+            .btn-voltar:hover {
+                background: #34d399;
+                color: #fff;
+                box-shadow: 0 4px 18px #10b98166;
+            }
+
+            .btn-wpp {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.08rem;
+                font-weight: 700;
+                background: linear-gradient(90deg, #25d366 70%, #059669 100%);
+                color: #fff !important;
+                border: none;
+                border-radius: 12px;
+                padding: 15px 0;
+                margin: 0;
+                box-shadow: 0 1px 12px #10b98144;
+                text-decoration: none;
+                transition: all .22s;
+                gap: 7px;
+            }
+
+            .btn-wpp:hover {
+                background: linear-gradient(90deg, #059669 60%, #25d366 100%);
+                color: #fff;
+                box-shadow: 0 4px 20px #10b98166;
+            }
+
+            .btn-wpp svg {
+                width: 21px;
+                height: 21px;
+                margin-right: 2px;
+                fill: #fff;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div id="app">
-    <div class="container" id="form-section">
-      <h1>Plano Personalizado Maloca</h1>
-      <p style="text-align:center;color:#a7f3d0;margin-bottom:20px;">
-        Monte seu plano ideal escolhendo apenas os serviços que fazem sentido para o seu negócio.
-      </p>
-      <div class="cards" id="servicos"></div>
-      <h3>🎨 Artes Estáticas para Redes Sociais</h3>
-      <div class="artes-cards" id="artes"></div>
-      <div style="color:#94a3b8;margin-top:8px;margin-left:2px;">
-        Ou arte avulsa: <span style="color:#fff;font-weight:bold;">R$100/unidade</span>
-      </div>
-      <div
-        style="background:#064e3b;margin-top:28px;padding:22px 0 14px 0;border-radius:18px;text-align:center;box-shadow:0 2px 16px #10b98155;">
-        <h3 style="color:#fff;">Total do Plano</h3>
-        <div style="font-size:2rem;font-weight:bold;color:#34d399;margin:10px 0 16px 0;" id="total"></div>
-        <button class="btn-pedido" id="realizar-pedido">Realizar Pedido</button>
-      </div>
-      <div class="small">
-        Monte seu plano conforme a necessidade do seu negócio. Valores exclusivos para a proposta Maloca.
-      </div>
+    <div id="app">
+        <div class="container" id="form-section">
+            <h1>Plano Personalizado Maloca</h1>
+            <p style="text-align:center;color:#a7f3d0;margin-bottom:20px;">
+                Monte seu plano ideal escolhendo apenas os serviços que fazem sentido para o seu negócio.
+            </p>
+            <div class="cards" id="servicos"></div>
+            <h3>🎨 Artes Estáticas para Redes Sociais</h3>
+            <div class="artes-cards" id="artes"></div>
+            <div style="color:#94a3b8;margin-top:8px;margin-left:2px;">
+                Ou arte avulsa: <span style="color:#fff;font-weight:bold;">R$100/unidade</span>
+            </div>
+            <div
+                style="background:#064e3b;margin-top:28px;padding:22px 0 14px 0;border-radius:18px;text-align:center;box-shadow:0 2px 16px #10b98155;">
+                <h3 style="color:#fff;">Total do Plano</h3>
+                <div style="font-size:2rem;font-weight:bold;color:#34d399;margin:10px 0 16px 0;" id="total"></div>
+                <button class="btn-pedido" id="realizar-pedido">Realizar Pedido</button>
+            </div>
+            <div class="small">
+                Monte seu plano conforme a necessidade do seu negócio. Valores exclusivos para a proposta Maloca.
+            </div>
+        </div>
+        <div id="resumo-section" style="display:none;">
+            <div class="container resumo">
+                <h2>Resumo do seu Plano Personalizado</h2>
+                <div id="resumo-list"></div>
+                <button class="btn-voltar" id="btn-voltar">
+                    <span style="display:inline-flex;align-items:center;">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24" style="margin-right:7px;">
+                            <path d="M15 19l-7-7 7-7" />
+                        </svg>
+                        Voltar
+                    </span>
+                </button>
+                <a href="#" class="btn-wpp" id="btn-wpp" target="_blank">Finalizar Pedido no WhatsApp</a>
+            </div>
+        </div>
     </div>
-    <div id="resumo-section" style="display:none;">
-      <div class="container resumo">
-        <h2>Resumo do seu Plano Personalizado</h2>
-        <div id="resumo-list"></div>
-        <button class="btn-voltar" id="btn-voltar">
-          <span style="display:inline-flex;align-items:center;">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-              style="margin-right:7px;">
-              <path d="M15 19l-7-7 7-7" />
-            </svg>
-            Voltar
-          </span>
-        </button>
-        <a href="#" class="btn-wpp" id="btn-wpp" target="_blank">Finalizar Pedido no WhatsApp</a>
-      </div>
-    </div>
-  </div>
-  <script>
-    const ARTES_PRECOS = [
-      { quantidade: 4, valor: 360 },
-      { quantidade: 8, valor: 680 },
-      { quantidade: 12, valor: 960 },
-      { quantidade: 20, valor: 1400 },
-    ];
-    const SERVICOS = [
-      { nome: "Audiovisual", valor: 1200, descricao: "2 dias de captação por mês (a cada 15 dias). Fotos e vídeos profissionais. Edição completa dos conteúdos." },
-      { nome: "Tráfego Pago", valor: 800, descricao: "Gestão de campanhas de engajamento e conversão. Estratégia para delivery via site próprio. Otimização e acompanhamento." },
-      { nome: "Gestão de Marketing", valor: 500, descricao: "Estratégias de marketing e posicionamento. Automação de grupo de fidelidade. Planejamento e insights de campanhas." },
-      { nome: "Social Media", valor: 500, descricao: "Organização de feed e stories. Estratégia de engajamento. Calendário de postagens." },
-    ];
-    const whatsappNumber = "5521997339244";
+    <script>
+        const ARTES_PRECOS = [
+            { quantidade: 4, valor: 360 },
+            { quantidade: 8, valor: 680 },
+            { quantidade: 12, valor: 960 },
+            { quantidade: 20, valor: 1400 },
+        ];
+        const SERVICOS = [
+            { nome: "Audiovisual", valor: 1200, descricao: "2 dias de captação por mês (a cada 15 dias). Fotos e vídeos profissionais. Edição completa dos conteúdos." },
+            { nome: "Tráfego Pago", valor: 800, descricao: "Gestão de campanhas de engajamento e conversão. Estratégia para delivery via site próprio. Otimização e acompanhamento." },
+            { nome: "Gestão de Marketing", valor: 500, descricao: "Estratégias de marketing e posicionamento. Automação de grupo de fidelidade. Planejamento e insights de campanhas." },
+            { nome: "Social Media", valor: 500, descricao: "Organização de feed e stories. Estratégia de engajamento. Calendário de postagens." },
+        ];
+        const whatsappNumber = "5521997339244";
 
-    let servicosSelecionados = [];
-    let artesSelecionadas = [];
+        let servicosSelecionados = [];
+        let arteSelecionada = null;
 
-    function renderServicos() {
-      const wrap = document.getElementById('servicos');
-      wrap.innerHTML = '';
-      SERVICOS.forEach((s, idx) => {
-        const isChecked = servicosSelecionados.includes(idx);
-        const div = document.createElement('div');
-        div.className = 'card' + (isChecked ? ' selected' : '');
-        div.onclick = e => {
-          if (e.target.tagName.toLowerCase() === 'input') return;
-          toggleServico(idx);
-        };
-        div.innerHTML = `
+        function renderServicos() {
+            const wrap = document.getElementById('servicos');
+            wrap.innerHTML = '';
+            SERVICOS.forEach((s, idx) => {
+                const isChecked = servicosSelecionados.includes(idx);
+                const div = document.createElement('div');
+                div.className = 'card' + (isChecked ? ' selected' : '');
+                div.onclick = e => {
+                    if (e.target.tagName.toLowerCase() === 'input') return;
+                    toggleServico(idx);
+                };
+                div.innerHTML = `
         <label>
           <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleServico(${idx})">
           <span style="font-size:1.08rem;font-weight:600;">${s.nome}</span>
@@ -313,110 +439,113 @@
         <div class="valor">R$${s.valor}/mês</div>
         <div style="margin-top:6px;font-size:0.97rem;">${s.descricao}</div>
       `;
-        wrap.appendChild(div);
-      });
-    }
-    function renderArtes() {
-      const wrap = document.getElementById('artes');
-      wrap.innerHTML = '';
-      ARTES_PRECOS.forEach((a, idx) => {
-        const isChecked = artesSelecionadas.includes(idx);
-        const div = document.createElement('div');
-        div.className = 'artes-card' + (isChecked ? ' selected' : '');
-        div.onclick = e => {
-          if (e.target.tagName.toLowerCase() === 'input') return;
-          toggleArte(idx);
+                wrap.appendChild(div);
+            });
+        }
+
+        function renderArtes() {
+            const wrap = document.getElementById('artes');
+            wrap.innerHTML = '';
+            ARTES_PRECOS.forEach((a, idx) => {
+                const isChecked = arteSelecionada === idx;
+                const div = document.createElement('div');
+                div.className = 'artes-card' + (isChecked ? ' selected' : '');
+                div.onclick = e => {
+                    if (e.target.tagName.toLowerCase() === 'input') return;
+                    toggleArte(idx);
+                };
+                div.innerHTML = `
+                <label>
+                    <input type="radio" name="pacote-artes" ${isChecked ? 'checked' : ''} onchange="toggleArte(${idx})">
+                    <span class="artes-label">${a.quantidade} artes/mês</span>
+                </label>
+                <div class="valor">R$${a.valor}</div>
+                <div style="font-size:0.95rem;">Pacote promocional</div>
+                `;
+                wrap.appendChild(div);
+            });
+        }
+
+        function renderTotal() {
+            document.getElementById('total').textContent = 'Calculando...';
+            setTimeout(() => {
+                const tServ = servicosSelecionados.reduce((acc, i) => acc + SERVICOS[i].valor, 0);
+                const tArt = (arteSelecionada !== null) ? ARTES_PRECOS[arteSelecionada].valor : 0;
+                document.getElementById('total').textContent = 'R$' + (tServ + tArt) + ',00 / mês';
+            }, 400);
+        }
+
+        function toggleServico(idx) {
+            if (servicosSelecionados.includes(idx)) {
+                servicosSelecionados = servicosSelecionados.filter(i => i !== idx);
+            } else {
+                servicosSelecionados.push(idx);
+            }
+            renderServicos(); renderTotal();
+        }
+
+        function toggleArte(idx) {
+            if (arteSelecionada === idx) {
+                arteSelecionada = null;
+            } else {
+                arteSelecionada = idx;
+            }
+            renderArtes(); renderTotal();
+        }
+
+        function renderAll() {
+            renderServicos();
+            renderArtes();
+            renderTotal();
+        }
+
+        function gerarResumo() {
+            const tServ = servicosSelecionados.reduce((acc, i) => acc + SERVICOS[i].valor, 0);
+            const tArt = (arteSelecionada !== null) ? ARTES_PRECOS[arteSelecionada].valor : 0;
+            const total = tServ + tArt;
+            let txt = '';
+            if (servicosSelecionados.length) {
+                txt += '<strong>Serviços Selecionados:</strong><ul>';
+                servicosSelecionados.forEach(i => {
+                    txt += `<li>${SERVICOS[i].nome} <span style="color:#34d399;font-weight:600;">(R$${SERVICOS[i].valor}/mês)</span></li>`;
+                });
+                txt += '</ul>';
+            }
+            if (arteSelecionada !== null) {
+                txt += '<strong>Pacote de Artes:</strong><ul>';
+                txt += `<li>${ARTES_PRECOS[arteSelecionada].quantidade} artes <span style="color:#34d399;font-weight:600;">(R$${ARTES_PRECOS[arteSelecionada].valor})</span></li>`;
+                txt += '</ul>';
+            }
+            txt += `<hr><div><div class="resumo-total-label">Total:</div><span class="resumo-total-valor">R$${total},00/mês</span></div>`;
+            return txt;
+        }
+
+        function gerarMensagemWpp() {
+            const tServ = servicosSelecionados.reduce((acc, i) => acc + SERVICOS[i].valor, 0);
+            const tArt = (arteSelecionada !== null) ? ARTES_PRECOS[arteSelecionada].valor : 0;
+            const total = tServ + tArt;
+            let s1 = servicosSelecionados.length
+                ? 'Serviços selecionados:\n' + servicosSelecionados.map(i => `• ${SERVICOS[i].nome} (R$${SERVICOS[i].valor}/mês)`).join('\n') : '';
+            let s2 = arteSelecionada !== null
+                ? '\nPacote de artes:\n' + `• ${ARTES_PRECOS[arteSelecionada].quantidade} artes (R$${ARTES_PRECOS[arteSelecionada].valor})` : '';
+            return encodeURIComponent(
+                `Olá! Quero contratar o Plano Personalizado Maloca com as seguintes opções:\n\n${s1}${s2}\nTotal: R$${total},00/mês`
+            );
+        }
+
+        document.getElementById('realizar-pedido').onclick = function () {
+            document.getElementById('form-section').style.display = 'none';
+            document.getElementById('resumo-section').style.display = '';
+            document.getElementById('resumo-list').innerHTML = gerarResumo();
+            document.getElementById('btn-wpp').href = 'https://wa.me/' + whatsappNumber + '?text=' + gerarMensagemWpp();
         };
-        div.innerHTML = `
-        <label>
-          <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleArte(${idx})">
-          <span class="artes-label">${a.quantidade} artes/mês</span>
-        </label>
-        <div class="valor">R$${a.valor}</div>
-        <div style="font-size:0.95rem;">Pacote promocional</div>
-      `;
-        wrap.appendChild(div);
-      });
-    }
-    function renderTotal() {
-      // Simula uma chamada AJAX para buscar o total (exemplo: setTimeout)
-      document.getElementById('total').textContent = 'Calculando...';
-      setTimeout(() => {
-        const tServ = servicosSelecionados.reduce((acc, i) => acc + SERVICOS[i].valor, 0);
-        const tArt = artesSelecionadas.reduce((acc, i) => acc + ARTES_PRECOS[i].valor, 0);
-        document.getElementById('total').textContent = 'R$' + (tServ + tArt) + ',00 / mês';
-      }, 400); // atraso de 400ms para simular requisição AJAX
-    }
-    function toggleServico(idx) {
-      if (servicosSelecionados.includes(idx)) {
-        servicosSelecionados = servicosSelecionados.filter(i => i !== idx);
-      } else {
-        servicosSelecionados.push(idx);
-      }
-      renderServicos(); renderTotal();
-    }
-    function toggleArte(idx) {
-      if (artesSelecionadas.includes(idx)) {
-        artesSelecionadas = artesSelecionadas.filter(i => i !== idx);
-      } else {
-        artesSelecionadas.push(idx);
-      }
-      renderArtes(); renderTotal();
-    }
-    function renderAll() {
-      renderServicos();
-      renderArtes();
-      renderTotal();
-    }
+        document.getElementById('btn-voltar').onclick = function () {
+            document.getElementById('form-section').style.display = '';
+            document.getElementById('resumo-section').style.display = 'none';
+        };
 
-    function gerarResumo() {
-      const tServ = servicosSelecionados.reduce((acc, i) => acc + SERVICOS[i].valor, 0);
-      const tArt = artesSelecionadas.reduce((acc, i) => acc + ARTES_PRECOS[i].valor, 0);
-      const total = tServ + tArt;
-      let txt = '';
-      if (servicosSelecionados.length) {
-        txt += '<strong>Serviços Selecionados:</strong><ul>';
-        servicosSelecionados.forEach(i => {
-          txt += `<li>${SERVICOS[i].nome} <span style="color:#34d399;font-weight:600;">(R$${SERVICOS[i].valor}/mês)</span></li>`;
-        });
-        txt += '</ul>';
-      }
-      if (artesSelecionadas.length) {
-        txt += '<strong>Pacotes de Artes:</strong><ul>';
-        artesSelecionadas.forEach(i => {
-          txt += `<li>${ARTES_PRECOS[i].quantidade} artes <span style="color:#34d399;font-weight:600;">(R$${ARTES_PRECOS[i].valor})</span></li>`;
-        });
-        txt += '</ul>';
-      }
-      txt += `<div style="margin-top:10px;font-size:1.2rem;"><strong>Total:</strong> <span style="color:#34d399;font-weight:700;">R$${total},00/mês</span></div>`;
-      return txt;
-    }
-    function gerarMensagemWpp() {
-      const tServ = servicosSelecionados.reduce((acc, i) => acc + SERVICOS[i].valor, 0);
-      const tArt = artesSelecionadas.reduce((acc, i) => acc + ARTES_PRECOS[i].valor, 0);
-      const total = tServ + tArt;
-      let s1 = servicosSelecionados.length
-        ? 'Serviços selecionados:\\n' + servicosSelecionados.map(i => `• ${SERVICOS[i].nome} (R$${SERVICOS[i].valor}/mês)`).join('\\n') : '';
-      let s2 = artesSelecionadas.length
-        ? '\\nPacotes de artes:\\n' + artesSelecionadas.map(i => `• ${ARTES_PRECOS[i].quantidade} artes (R$${ARTES_PRECOS[i].valor})`).join('\\n') : '';
-      return encodeURIComponent(
-        `Olá! Quero contratar o Plano Personalizado Maloca com as seguintes opções:\\n\\n${s1}${s2}\\nTotal: R$${total},00/mês`
-      );
-    }
-
-    document.getElementById('realizar-pedido').onclick = function () {
-      document.getElementById('form-section').style.display = 'none';
-      document.getElementById('resumo-section').style.display = '';
-      document.getElementById('resumo-list').innerHTML = gerarResumo();
-      document.getElementById('btn-wpp').href = 'https://wa.me/' + whatsappNumber + '?text=' + gerarMensagemWpp();
-    };
-    document.getElementById('btn-voltar').onclick = function () {
-      document.getElementById('form-section').style.display = '';
-      document.getElementById('resumo-section').style.display = 'none';
-    };
-
-    renderAll();
-  </script>
+        renderAll();
+    </script>
 </body>
 
 </html>
