@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Plano Personalizado Maloca</title>
+    <title>Plano Personalizado</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* ... (SEU CSS SEM ALTERAÇÃO) ... */
@@ -153,6 +153,178 @@
             font-size: 13px;
             margin-top: 24px;
         }
+
+        @media (min-width: 768px) {
+            body {
+                min-height: 100vh;
+                background: #181f2f;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #resumo-section {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: transparent;
+                padding: 0;
+            }
+
+            .container.resumo {
+                background: linear-gradient(137deg, #063146 80%, #084139 100%);
+                max-width: 520px;
+                width: 100%;
+                margin: 0;
+                border-radius: 28px;
+                padding: 48px 42px 38px 42px;
+                box-shadow: 0 8px 48px #10b9812b, 0 1.5px 5px #0003;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            .container.resumo h2 {
+                font-size: 1.65rem;
+                font-weight: 900;
+                color: #fff;
+                margin-bottom: 23px;
+                letter-spacing: 0.02em;
+                text-align: left;
+            }
+
+            #resumo-list {
+                font-size: 1.12rem;
+                color: #d1fae5;
+                margin-bottom: 23px;
+                border-bottom: 1.5px solid #1ea88b60;
+                padding-bottom: 16px;
+                text-align: left;
+            }
+
+            #resumo-list strong {
+                color: #a7f3d0;
+                font-weight: 900;
+                font-size: 1.12rem;
+                margin-top: 7px;
+                display: block;
+                letter-spacing: 0.02em;
+            }
+
+            #resumo-list ul {
+                margin: 7px 0 4px 22px;
+                font-size: 1.08rem;
+            }
+
+            #resumo-list li {
+                margin-bottom: 4px;
+                font-size: 1.03rem;
+                color: #bbf7d0;
+                line-height: 1.45;
+            }
+
+            #resumo-list .invest-trafego {
+                color: #fbbf24;
+                font-size: 1.01rem;
+                font-weight: 700;
+                margin-left: 2px;
+            }
+
+            #resumo-list .resumo-total-label {
+                color: #99f6e4;
+                font-size: 1.13rem;
+                font-weight: 600;
+                margin-top: 13px;
+                margin-bottom: 0;
+                letter-spacing: 0.01em;
+            }
+
+            #resumo-list .resumo-total-valor {
+                color: #34d399;
+                font-size: 2.35rem;
+                font-weight: 900;
+                letter-spacing: 0.01em;
+                margin-top: 0;
+                margin-bottom: 13px;
+                display: block;
+                line-height: 1.08em;
+            }
+
+            #resumo-list hr {
+                border: none;
+                border-top: 1.5px solid #183c3c38;
+                margin: 23px 0 15px 0;
+            }
+
+            .container.resumo .btn-wpp {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.18rem;
+                font-weight: 800;
+                background: linear-gradient(90deg, #22d97b 70%, #29e3b7 100%);
+                color: #fff !important;
+                border: none;
+                border-radius: 13px;
+                padding: 18px 0 17px 0;
+                margin: 0;
+                box-shadow: 0 2px 18px #29e3b733;
+                text-decoration: none !important;
+                transition: all .19s;
+                gap: 7px;
+                letter-spacing: 0.01em;
+                text-align: center;
+                outline: none;
+            }
+
+            .container.resumo .btn-wpp:hover {
+                background: linear-gradient(90deg, #21a563 70%, #1ad9a2 100%);
+                color: #fff;
+                box-shadow: 0 4px 28px #10b98166;
+                text-decoration: none !important;
+            }
+
+            .container.resumo .btn-wpp:active {
+                filter: brightness(0.97);
+            }
+
+            .container.resumo .btn-wpp,
+            .container.resumo .btn-wpp:visited {
+                text-decoration: none !important;
+            }
+
+            .container.resumo .btn-voltar,
+            .container.resumo .btn-wpp {
+                font-size: 1.17rem;
+                padding: 17px 0;
+                border-radius: 14px;
+                margin-bottom: 0;
+            }
+
+            .container.resumo .btn-voltar {
+                margin-right: 0;
+                margin-bottom: 13px;
+                font-weight: 600;
+                background: #fff;
+                color: #047857;
+                border: 2px solid #34d399;
+                box-shadow: 0 1px 8px #10b98133;
+            }
+
+            .container.resumo .btn-wpp {
+                margin: 0;
+                font-weight: 700;
+                background: linear-gradient(90deg, #25d366 70%, #059669 100%);
+                color: #fff !important;
+                border: none;
+                box-shadow: 0 1px 12px #10b98144;
+                gap: 7px;
+            }
+        }
+
 
         @media (max-width:680px) {
 
@@ -365,7 +537,7 @@
 <body>
     <div id="app">
         <div class="container" id="form-section">
-            <h1>Plano Personalizado Maloca</h1>
+            <h1>Plano Personalizado</h1>
             <p style="text-align:center;color:#a7f3d0;margin-bottom:20px;">
                 Monte seu plano ideal escolhendo apenas os serviços que fazem sentido para o seu negócio.
             </p>
@@ -382,7 +554,7 @@
                 <button class="btn-pedido" id="realizar-pedido">Realizar Pedido</button>
             </div>
             <div class="small">
-                Monte seu plano conforme a necessidade do seu negócio. Valores exclusivos para a proposta Maloca.
+                Monte seu plano conforme a necessidade do seu negócio. Valores exclusivos para a proposta personalizada.
             </div>
         </div>
         <div id="resumo-section" style="display:none;">
@@ -574,7 +746,7 @@
             let s2 = arteSelecionada !== null
                 ? '\nPacote de artes:\n' + `• ${ARTES_PRECOS[arteSelecionada].quantidade} artes (R$${ARTES_PRECOS[arteSelecionada].valor})` : '';
             return encodeURIComponent(
-                `Olá! Quero contratar o Plano Personalizado Maloca com as seguintes opções:\n\n${s1}${s2}\nTotal: R$${total},00/mês`
+                `Olá! Quero contratar o Plano Personalizado com as seguintes opções:\n\n${s1}${s2}\nTotal: R$${total},00/mês`
             );
         }
 
