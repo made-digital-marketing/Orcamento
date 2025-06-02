@@ -59,27 +59,81 @@
         height: 16px;
       }
       .container.resumo {
-        padding: 10vw 4vw;
-        margin: 12vw 0 0 0;
-        min-width: 0;
-        border-radius: 14px;
-      }
-      .container.resumo h2 {
-        font-size: 1.1rem;
-        margin-bottom: 16px;
-      }
-      #resumo-list strong { font-size: 1.02rem; }
-      #resumo-list ul { margin-left: 12px; font-size: 0.99rem;}
-      .btn-voltar, .btn-wpp {
-        display: block;
-        width: 100%;
-        min-width: 0;
-        margin: 0 0 16px 0;
-        font-size: 1.05rem;
-        padding: 14px 0;
-      }
-      .btn-voltar { margin-bottom: 10px; }
+      padding: 6vw 4vw 8vw 4vw;
+      margin: 6vw 0 0 0;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #10b98166, 0 1.5px 5px #2222;
+      background: linear-gradient(135deg,#022c22 75%,#064e3b 100%);
+      min-width: 0;
     }
+    .container.resumo h2 {
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      color: #34d399;
+      margin-bottom: 14px;
+      margin-top: 0;
+    }
+    #resumo-list strong {
+      font-size: 1.07rem;
+      color: #a7f3d0;
+      display: block;
+      margin-top: 9px;
+    }
+    #resumo-list ul {
+      margin-left: 0;
+      padding-left: 18px;
+      font-size: 0.99rem;
+      margin-bottom: 4px;
+    }
+    #resumo-list li {
+      margin-bottom: 3px;
+      line-height: 1.45;
+      font-size: 1.02rem;
+      color: #d1fae5;
+      background: rgba(52,211,153,0.07);
+      border-radius: 7px;
+      padding: 3px 0 3px 7px;
+    }
+    .container.resumo .mt-2, .container.resumo div[style*='margin-top:10px'] {
+      margin-top: 12px!important;
+      font-size: 1.1rem!important;
+      background: #064e3b;
+      padding: 7px 0 7px 0;
+      border-radius: 8px;
+      color: #34d399!important;
+      font-weight: 700;
+    }
+    .btn-voltar, .btn-wpp {
+      width: 100%;
+      min-width: 0;
+      margin: 0 0 14px 0;
+      font-size: 1.09rem;
+      padding: 14px 0;
+      border-radius: 11px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 1.5px 8px #10b98133;
+    }
+    .btn-voltar {
+      background: #022c22;
+      color: #34d399;
+      border: 2px solid #34d399;
+      margin-bottom: 9px;
+      font-weight: 600;
+    }
+    .btn-voltar:hover {
+      background: #34d399;
+      color: #022c22;
+    }
+    .btn-wpp {
+      background: linear-gradient(90deg,#34d399 60%,#25d366 100%);
+      color: #065f46;
+      font-weight: 700;
+    }
+    .btn-wpp:hover {
+      background: linear-gradient(90deg,#25d366,#34d399);
+      color: #022c22;
+    }
+  }
   </style>
 </head>
 <body>
