@@ -1,0 +1,195 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+
+const ARTES_PRECOS = [
+  { quantidade: 4, valor: 360 },
+  { quantidade: 8, valor: 680 },
+  { quantidade: 12, valor: 960 },
+  { quantidade: 20, valor: 1400 },
+];
+
+const SERVICOS = [
+  { nome: "Audiovisual", valor: 1200, descricao: "2 dias de captação por mês (a cada 15 dias). Fotos e vídeos profissionais. Edição completa dos conteúdos." },
+  { nome: "Tráfego Pago", valor: 800, descricao: "Gestão de campanhas de engajamento e conversão. Estratégia para delivery via site próprio. Otimização e acompanhamento." },
+  { nome: "Gestão de Marketing", valor: 500, descricao: "Estratégias de marketing e posicionamento. Automação de grupo de fidelidade. Planejamento e insights de campanhas." },
+  { nome: "Social Media", valor: 500, descricao: "Organização de feed e stories. Estratégia de engajamento. Calendário de postagens." },
+];
+
+export default function PlanoPersonalizadoMaloca() {
+  const [servicosSelecionados, setServicosSelecionados] = useState([]);
+  const [artesSelecionadas, setArtesSelecionadas] = useState([]);
+  const [pedido, setPedido] = useState(false);
+
+  const handleServico = (idx) => {
+    setServicosSelecionados((prev) =>
+      prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
+    );
+  };
+
+  const handleArtes = (idx) => {
+    setArtesSelecionadas((prev) =>
+      prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
+    );
+  };
+
+  const totalServicos = servicosSelecionados.reduce(
+    (acc, i) => acc + SERVICOS[i].valor,
+    0
+  );
+  const totalArtes = artesSelecionadas.reduce(
+    (acc, i) => acc + ARTES_PRECOS[i].valor,
+    0
+  );
+  const total = totalServicos + totalArtes;
+
+  const whatsappNumber = "5521997339244";
+  const servicosText = servicosSelecionados.map(
+    (i) => `• ${SERVICOS[i].nome} (R$${SERVICOS[i].valor}/mês)`
+  );
+  const artesText = artesSelecionadas.map(
+    (i) => `• ${ARTES_PRECOS[i].quantidade} artes (R$${ARTES_PRECOS[i].valor})`
+  );
+  const resumo =
+    (servicosText.length ? `Serviços selecionados:\n${servicosText.join("\n")}` : "") +
+    (artesText.length ? `\nPacotes de artes:\n${artesText.join("\n")}` : "") +
+    `\nTotal: R$${total},00/mês`;
+  const whatsappUrl =
+    `https://wa.me/${whatsappNumber}?text=` +
+    encodeURIComponent(
+      `Olá! Quero contratar o Plano Personalizado Maloca com as seguintes opções:\n\n${resumo}`
+    );
+
+  if (pedido) {
+    return (
+      <div className="max-w-2xl mx-auto mt-10 p-8 rounded-2xl shadow-2xl bg-emerald-950/90 text-white text-center">
+        <h2 className="text-2xl font-bold mb-4">Resumo do seu Plano Personalizado</h2>
+        <div className="mb-4 text-left whitespace-pre-line">
+          {servicosText.length > 0 && (
+            <>
+              <strong>Serviços Selecionados:</strong>
+              <ul className="mb-2 ml-3 list-disc">
+                {servicosSelecionados.map((i) => (
+                  <li key={i}>{SERVICOS[i].nome} <span className="text-emerald-400 font-semibold">(R${SERVICOS[i].valor}/mês)</span></li>
+                ))}
+              </ul>
+            </>
+          )}
+          {artesText.length > 0 && (
+            <>
+              <strong>Pacotes de Artes:</strong>
+              <ul className="mb-2 ml-3 list-disc">
+                {artesSelecionadas.map((i) => (
+                  <li key={i}>{ARTES_PRECOS[i].quantidade} artes <span className="text-emerald-400 font-semibold">(R${ARTES_PRECOS[i].valor})</span></li>
+                ))}
+              </ul>
+            </>
+          )}
+          <div className="mt-2 text-lg">
+            <strong>Total:</strong> <span className="text-emerald-400 font-bold">R${total},00/mês</span>
+          </div>
+        </div>
+        <Button
+  variant="ghost"
+  className="mr-4 mb-4 border border-emerald-400 text-emerald-300 hover:bg-emerald-400 hover:text-emerald-950 font-bold shadow transition-all duration-200 rounded-xl px-8 py-3 text-base"
+  onClick={() => setPedido(false)}
+>
+  <span className="inline-flex items-center gap-2">
+    <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+    Voltar
+  </span>
+</Button>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-4 px-8 py-3 bg-emerald-500 rounded-xl text-lg font-semibold shadow-md hover:bg-emerald-600 transition"
+        >
+          Finalizar Pedido no WhatsApp
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <section>
+      <div className="max-w-3xl mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-2 text-center text-white tracking-tight">Plano Personalizado Maloca</h1>
+        <p className="text-lg text-center mb-8 text-slate-300">Monte seu plano ideal escolhendo apenas os serviços que fazem sentido para o seu negócio.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {SERVICOS.map((servico, idx) => (
+            <Card
+              key={servico.nome}
+              className={
+                servicosSelecionados.includes(idx)
+                  ? "border-emerald-600 bg-emerald-600/90 shadow-lg text-white transition-all duration-200"
+                  : "border-emerald-100 bg-emerald-50 text-emerald-900 transition-all duration-200"
+              }
+            >
+              <CardContent className="p-6 flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <h2 className={servicosSelecionados.includes(idx) ? "text-xl font-semibold text-white" : "text-xl font-semibold text-emerald-800"}>{servico.nome}</h2>
+                  <Checkbox
+                    checked={servicosSelecionados.includes(idx)}
+                    onCheckedChange={() => handleServico(idx)}
+                    className="scale-125 border-emerald-400"
+                  />
+                </div>
+                <span className={servicosSelecionados.includes(idx) ? "text-lg font-bold text-white" : "text-lg font-bold text-emerald-700"}>R${servico.valor}/mês</span>
+                <p className={servicosSelecionados.includes(idx) ? "text-emerald-50 text-base" : "text-emerald-800 text-base"}>{servico.descricao}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold text-emerald-300 mb-4">🎨 Artes Estáticas para Redes Sociais</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {ARTES_PRECOS.map((pacote, idx) => (
+              <Card
+                key={pacote.quantidade}
+                className={
+                  artesSelecionadas.includes(idx)
+                    ? "border-emerald-600 bg-emerald-600/90 shadow-lg text-white transition-all duration-200"
+                    : "border-emerald-100 bg-emerald-50 text-emerald-900 transition-all duration-200"
+                }
+              >
+                <CardContent className="flex items-center justify-between p-4">
+                  <div>
+                    <span className={artesSelecionadas.includes(idx) ? "text-lg font-bold text-white" : "text-lg font-bold text-emerald-800"}>
+                      {pacote.quantidade} artes/mês
+                    </span>
+                    <p className={artesSelecionadas.includes(idx) ? "text-emerald-50 text-base" : "text-emerald-800 text-base"}>Pacote promocional</p>
+                    <span className={artesSelecionadas.includes(idx) ? "block text-xl font-bold text-white mt-1" : "block text-xl font-bold text-emerald-700 mt-1"}>
+                      R${pacote.valor}
+                    </span>
+                  </div>
+                  <Checkbox
+                    checked={artesSelecionadas.includes(idx)}
+                    onCheckedChange={() => handleArtes(idx)}
+                    className="scale-125 border-emerald-400"
+                  />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-slate-400 mt-4 ml-1">
+            Ou arte avulsa: <span className="text-white font-bold">R$100/unidade</span>
+          </div>
+        </div>
+        <div className="bg-emerald-900 rounded-2xl shadow-xl p-6 flex flex-col items-center">
+          <h3 className="text-2xl font-bold text-white mb-2">Total do Plano</h3>
+          <span className="text-4xl font-bold text-emerald-400 mb-4">R${total},00 / mês</span>
+          <Button
+            size="lg"
+            className="mt-2 px-8 py-3 text-lg rounded-xl shadow-md bg-gradient-to-r from-emerald-500 to-cyan-500 text-white"
+            onClick={() => setPedido(true)}
+          >
+            Realizar Pedido
+          </Button>
+        </div>
+        <p className="mt-10 text-center text-xs text-slate-400">Monte seu plano conforme a necessidade do seu negócio. Valores exclusivos para a proposta Maloca.</p>
+      </div>
+    </section>
+  );
+}
